@@ -1,0 +1,119 @@
+:root {
+  --bg: #0f1115;
+  --surface: #1a1d23;
+  --border: #2a2e36;
+  --text: #e2e4e9;
+  --text-muted: #8b92a8;
+  --accent: #4f8cff;
+  --accent-hover: #3a7aee;
+  --danger: #e05050;
+  --success: #50c878;
+  --warning: #f0a030;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background: var(--accent);
+  color: white;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input, select, textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+iframe {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: white;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.badge-high { background: rgba(80, 200, 120, 0.15); color: var(--success); }
+.badge-spam { background: rgba(224, 80, 80, 0.15); color: var(--danger); }
+.badge-affiliate { background: rgba(240, 160, 48, 0.15); color: var(--warning); }
+.badge-ai { background: rgba(200, 80, 200, 0.15); color: #c850c8; }
+.badge-borderline { background: rgba(139, 146, 168, 0.15); color: var(--text-muted); }
+.badge-needs { background: rgba(79, 140, 255, 0.15); color: var(--accent); }
