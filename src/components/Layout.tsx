@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -19,20 +19,20 @@ export function Layout({ children }: { children: ReactNode }) {
         <span style={{ fontWeight: 700, fontSize: 16, color: 'var(--accent)' }}>
           Curator
         </span>
-        <NavLink href="/queue" current={location.pathname}>Queue</NavLink>
-        <NavLink href="/domains" current={location.pathname}>Domains</NavLink>
-        <NavLink href="/calibration" current={location.pathname}>Calibration</NavLink>
+        <TopNavLink href="/queue" current={location.pathname}>Queue</TopNavLink>
+        <TopNavLink href="/domains" current={location.pathname}>Domains</TopNavLink>
+        <TopNavLink href="/calibration" current={location.pathname}>Calibration</TopNavLink>
       </nav>
       <main style={{ flex: 1, overflow: 'auto' }}>{children}</main>
     </div>
   )
 }
 
-function NavLink({ href, current, children }: { href: string; current: string; children: ReactNode }) {
+function TopNavLink({ href, current, children }: { href: string; current: string; children: ReactNode }) {
   const isActive = current === href
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       style={{
         color: isActive ? 'var(--text)' : 'var(--text-muted)',
         fontWeight: isActive ? 600 : 400,
@@ -42,6 +42,6 @@ function NavLink({ href, current, children }: { href: string; current: string; c
       }}
     >
       {children}
-    </a>
+    </Link>
   )
 }

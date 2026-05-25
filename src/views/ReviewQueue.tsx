@@ -24,6 +24,10 @@ export default function ReviewQueue() {
   const [pageIndex, setPageIndex] = useState(0)
   const [labelsToday, setLabelsToday] = useState(0)
 
+  useEffect(() => {
+    setPageIndex(0)
+  }, [minHvs, maxHvs, unlabeledOnly])
+
   const { data: pages, isLoading } = useQuery({
     queryKey: ['queue', minHvs, maxHvs, unlabeledOnly],
     queryFn: () =>
@@ -59,6 +63,7 @@ export default function ReviewQueue() {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return
       const match = LABEL_KEYS.find((l) => l.key === e.key)
       if (match) {
         setSelectedLabel(match.label)

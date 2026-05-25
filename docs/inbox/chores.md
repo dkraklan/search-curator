@@ -15,3 +15,9 @@
 - [x] 2026-05-25 Set up client-side routing between /queue, /domains, and /calibration views  <!-- done -->
 - [x] 2026-05-25 Create shared UI components in src/components/ (buttons, tables, forms, layout shell with nav)  <!-- done -->
 - [x] 2026-05-25 Add npm scripts to package.json: dev, build, lint (placeholder for test in Phase 1)  <!-- done -->
+- 2026-05-25 Add Vitest + @testing-library/react for curator unit tests
+- 2026-05-25 Inline styles in all components — extract to CSS modules or Tailwind
+- 2026-05-25 labelsToday counter resets on navigation/refresh — persist to sessionStorage or fetch from server
+- 2026-05-25 apiFetch contentLength check is unreliable for chunked responses
+- 2026-05-25 iframe sandbox allow-same-origin on external URLs — security concern
+- 2026-05-25 useQuery retry:1 globally without 401 exclusion

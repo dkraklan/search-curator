@@ -6,6 +6,18 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recha
 
 type SortKey = 'domain' | 'seed_tier' | 'hvs_avg' | 'page_count' | 'status'
 
+function compareValues(aVal: unknown, bVal: unknown, desc: boolean): number {
+  if (aVal == null && bVal == null) return 0
+  if (aVal == null) return 1
+  if (bVal == null) return -1
+  if (typeof aVal === 'number' && typeof bVal === 'number') {
+    return desc ? bVal - aVal : aVal - bVal
+  }
+  const aStr = String(aVal)
+  const bStr = String(bVal)
+  return desc ? bStr.localeCompare(aStr) : aStr.localeCompare(bStr)
+}
+
 export default function DomainReview() {
   const [sort, setSort] = useState<{ key: SortKey; desc: boolean }>({ key: 'hvs_avg', desc: false })
   const [selectedDomainId, setSelectedDomainId] = useState<string | null>(null)
@@ -22,13 +34,7 @@ export default function DomainReview() {
   })
 
   const sorted = domains
-    ? [...domains].sort((a, b) => {
-        const aVal = a[sort.key] ?? ''
-        const bVal = b[sort.key] ?? ''
-        if (aVal < bVal) return sort.desc ? 1 : -1
-        if (aVal > bVal) return sort.desc ? -1 : 1
-        return 0
-      })
+    ? [...domains].sort((a, b) => compareValues(a[sort.key], b[sort.key], sort.desc))
     : []
 
   if (isLoading) return <div style={{ padding: 40 }}>Loading domains…</div>
@@ -95,6 +101,11 @@ export default function DomainReview() {
           ))}
         </tbody>
       </table>
+      {sorted.length === 0 && (
+        <div style={{ padding: '20px 0', color: 'var(--text-muted)', fontSize: 14 }}>
+          No domains found.
+        </div>
+      )}
     </div>
   )
 }
